@@ -1,6 +1,5 @@
 #pragma once
 #include <tao/pegtl.hpp>
-#include <limits> // pegtl #232
 #include <tao/pegtl/contrib/uri.hpp>
 #include <filesystem> // For remove_dot_segments
 
