@@ -19,6 +19,8 @@ uri_components_t
     query;
         std::string
     fragment;
+        friend bool
+    operator == (uri_components_t const&, uri_components_t const&) = default;
 };
 
     namespace
@@ -273,7 +275,6 @@ recompose (uri_components_t const& components)
     return result;
 }
 
-#if 0
 // All bundled-up in a class
     class
 uri_t
@@ -284,71 +285,84 @@ uri_t
     uri_t (uri_components_t&& components)
         : components_m { std::move (components) }
     {}
+
 public:
     uri_t ()                   = default;
+
     uri_t (uri_t const&)       = default;
+
     uri_t (uri_t&&)            = default;
+
         uri_t&
     operator = (uri_t const&)  = default;
-        friend
-        void
+
+        friend void
     swap (uri_t& a, uri_t& b)
     {
         std::swap (a.components_m, b.components_m);
     }
+
     // Very naive. See RFC 3986 § 6.
-        friend
-        bool
+        friend bool
     operator == (uri_t const& a, uri_t const& b)
     {
         return a.components_m == b.components_m;
     }
-        friend
-        bool
+
+        friend bool
     operator != (uri_t const& a, uri_t const& b)
     {
         return a.components_m != b.components_m;
     }
     // At this point, the type is Regular.
 
+
     uri_t (std::string const& string)
         : components_m { parse_uri (string) }
     {}
+
         uri_t&
     operator = (std::string const& string)
     {
         components_m = parse_uri (string);
         return *this;
     }
+
     operator std::string () const
     {
         return string ();
     }
+
         std::string
     string () const
     {
         return recompose (components_m);
     }
+
         uri_t
     resolve (std::string const& relative_reference) const
     {
         return isto::uri::resolve (components_m, relative_reference);
     }
+
         std::string
     decode_percent () const
     {
         return isto::uri::decode_percent (string ());
     }
+
         std::string const&
     fragment () const
     {
         return components_m.fragment;
     }
+
         void
     clear_fragment ()
     {
         components_m.fragment = {};
     }
+
         uri_t
     absolute () const
     {
@@ -359,6 +373,5 @@ public:
         return c;
     }
 };
-#endif
 
 } // namespace isto::uri
