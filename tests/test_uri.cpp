@@ -2,8 +2,16 @@
 #include "../include/isto/uri/uri.hpp"
     using namespace isto::uri;
 
+
+    void f (uri_t const&){}
+
 TEST_CASE("uri.hpp")
 {
+    static_assert (std::is_convertible_v <std::string_view, uri_t>);
+    static_assert (std::is_convertible_v <std::string, uri_t>);
+    static_assert (std::is_convertible_v <const char*, uri_t>);
+    f ("http://example.com");
+
 // RFC 3986 § 5.4.
     const auto
 base_uri = "http://a/b/c/d;p?q";

@@ -317,7 +317,16 @@ public:
     // At this point, the type is Regular.
 
 
+    // http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0994r0.html
     uri_t (std::string_view string)
+        : components_m { parse_uri (string) }
+    {}
+
+    uri_t (std::string const& string)
+        : components_m { parse_uri (string) }
+    {}
+
+    uri_t (const char* string)
         : components_m { parse_uri (string) }
     {}
 
