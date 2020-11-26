@@ -83,7 +83,7 @@ GENERATE_CONTROL(URI)
 
     template <class StartingRule>
     uri_components_t
-parse (std::string const& string)
+parse (std::string_view string)
 {
         uri_components_t
     components;
@@ -102,20 +102,20 @@ parse (std::string const& string)
 
 // RFC 3986 § 3.
     uri_components_t
-parse_uri (std::string const& string)
+parse_uri (std::string_view string)
 {
     return detail::parse <tao::pegtl::uri::URI> (string);
 }
 // RFC 3986 § 4.1.
     uri_components_t
-parse_reference (std::string const& string)
+parse_reference (std::string_view string)
 {
     return detail::parse <tao::pegtl::uri::URI_reference> (string);
 }
 
 // RFC 3986 § 4.3.
     uri_components_t
-parse_absolute_uri (std::string const& string)
+parse_absolute_uri (std::string_view string)
 {
     return detail::parse <tao::pegtl::uri::absolute_URI> (string);
 }
@@ -123,7 +123,7 @@ parse_absolute_uri (std::string const& string)
 // RFC 3986 § 5.2.2.
 // TODO: maybe the name isn't right.
     uri_components_t
-resolve (uri_components_t const& base, std::string const& relative)
+resolve (uri_components_t const& base, std::string_view relative)
 {
         uri_components_t
     R, T;
@@ -149,7 +149,7 @@ resolve (uri_components_t const& base, std::string const& relative)
         }
     };
         auto
-    remove_dot_segments = [](std::string const& path)
+    remove_dot_segments = [](std::string_view path)
     {
             std::filesystem::path
         p (path);
@@ -209,7 +209,7 @@ resolve (uri_components_t const& base, std::string const& relative)
 
 // percent-escaped characters -> characters
     std::string
-decode_percent (std::string const& input)
+decode_percent (std::string_view input)
 {
         std::string
     output;
@@ -317,12 +317,12 @@ public:
     // At this point, the type is Regular.
 
 
-    uri_t (std::string const& string)
+    uri_t (std::string_view string)
         : components_m { parse_uri (string) }
     {}
 
         uri_t&
-    operator = (std::string const& string)
+    operator = (std::string_view string)
     {
         components_m = parse_uri (string);
         return *this;
@@ -340,7 +340,7 @@ public:
     }
 
         uri_t
-    resolve (std::string const& relative_reference) const
+    resolve (std::string_view relative_reference) const
     {
         return isto::uri::resolve (components_m, relative_reference);
     }
@@ -351,7 +351,7 @@ public:
         return isto::uri::decode_percent (string ());
     }
 
-        std::string const&
+        std::string_view
     fragment () const
     {
         return components_m.fragment;
