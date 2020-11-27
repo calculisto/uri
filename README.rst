@@ -8,11 +8,12 @@ A C++20 headers-only library to parse URIs and resolve URI references, using
 Requirements
 ------------
 
+- `taocpp/PEGTL <https://github.com/taocpp/PEGTL>`_
+
 To run the tests:
 
 - `GNU Make <https://www.gnu.org/software/make/>`_.
 - The `onqtam/doctest library <https://github.com/onqtam/doctest>`_.
-- `PEGTL <https://github.com/taocpp/PEGTL>`_
 
 
 Installation
@@ -20,7 +21,7 @@ Installation
 
 This is a headers-only library. Just put it where your compiler can find it.
 
-It will need `PEGTL <https://github.com/taocpp/PEGTL>`_ which is also
+It will need `taocpp/PEGTL <https://github.com/taocpp/PEGTL>`_ which is also
 headers-only.
 
 
