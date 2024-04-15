@@ -1,6 +1,7 @@
 #include <doctest/doctest.h>
-#include "../include/isto/uri/uri.hpp"
-    using namespace isto::uri;
+#include "../include/calculisto/uri/uri.hpp"
+#include <array>
+    using namespace calculisto::uri;
 
 
     void f (uri_t const&){}

@@ -3,7 +3,7 @@
 #include <tao/pegtl/contrib/uri.hpp>
 #include <filesystem> // For remove_dot_segments
 
-    namespace isto::uri
+    namespace calculisto::uri
 {
 
     struct
@@ -351,13 +351,13 @@ public:
         uri_t
     resolve (std::string_view relative_reference) const
     {
-        return isto::uri::resolve (components_m, relative_reference);
+        return calculisto::uri::resolve (components_m, relative_reference);
     }
 
         std::string
     decode_percent () const
     {
-        return isto::uri::decode_percent (string ());
+        return calculisto::uri::decode_percent (string ());
     }
 
         std::string_view
@@ -383,4 +383,4 @@ public:
     }
 };
 
-} // namespace isto::uri
+} // namespace calculisto::uri
