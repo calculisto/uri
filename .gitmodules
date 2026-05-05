@@ -1,0 +1,3 @@
+[submodule "git_submodules/taocpp/pegtl"]
+	path = git_submodules/taocpp/pegtl
+	url = https://github.com/taocpp/pegtl

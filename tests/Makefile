@@ -1,8 +1,9 @@
-include ../config.mk
-
-CXXFLAGS+=-I../${DOCTEST_HEADERS}
-
 .PHONY: all clean check
+
+PROJECT = uri
+
+CXXFLAGS += -isystem../git_submodules/taocpp/pegtl/include/
+LINK.o = ${LINK.cc}
 
 all: check
 
