@@ -236,11 +236,16 @@ decode_percent (std::string_view input)
         }
             char
         b = *i;
-            char
-        r = 
+        // TODO: assert that a and b are in [0,..,9,a,..,f,A,..,F]
+            int
+        tmp = 
               (a <= '9' ? a - '0': 10 + (a <= 'F' ? a - 'A' : a - 'f')) * 16
             + (b <= '9' ? b - '0': 10 + (b <= 'F' ? b - 'A' : b - 'f'))
         ;
+        // TODO: so that we produce a valid char here
+
+            char
+        r = static_cast <char> (tmp);
         output.push_back (r);
     }
     return output;
